@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BookView : View {
-    @ObservedObject var bookViewModel = BookViewModel()
+    @StateObject private var bookViewModel = BookViewModel()
     
     var body: some View {
-        VStack {
+        VStack() {
             Header(title: "Mi Biblioteca Digital")
             
             BookForm(
@@ -20,6 +20,20 @@ struct BookView : View {
                 isRead: $bookViewModel.isRead,
                 action: { }
             )
+            
+            if bookViewModel.books.isEmpty {
+                BookNotFound()
+            } else {
+                List(bookViewModel.books) { book in
+                    BookItem(
+                        title: book.title,
+                        author: book.author,
+                        isRead: book.isRead
+                    )
+                }
+                .listStyle(.plain)
+            }
+            
             
             Spacer()
         }

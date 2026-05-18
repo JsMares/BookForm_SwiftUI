@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookModel {
+struct BookModel : Identifiable {
     var id: Int = 0
     var title: String = ""
     var author: String = ""
