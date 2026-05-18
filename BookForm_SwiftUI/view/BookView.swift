@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct BookView : View {
-    @State var title: String = ""
-    @State var author: String = ""
-    @State var isRead: Bool = false
+    @ObservedObject var bookViewModel = BookViewModel()
     
     var body: some View {
         VStack {
             Header(title: "Mi Biblioteca Digital")
             
             BookForm(
-                title: $title,
-                author: $author,
-                isRead: $isRead,
+                title: $bookViewModel.title,
+                author: $bookViewModel.author,
+                isRead: $bookViewModel.isRead,
                 action: { }
             )
             
