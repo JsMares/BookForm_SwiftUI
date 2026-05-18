@@ -9,10 +9,19 @@ import SwiftUI
 
 struct BookView : View {
     @State var title: String = ""
+    @State var author: String = ""
+    @State var isRead: Bool = false
     
     var body: some View {
         VStack {
             Header(title: "Mi Biblioteca Digital")
+            
+            BookForm(
+                title: $title,
+                author: $author,
+                isRead: $isRead,
+                action: { }
+            )
             
             Spacer()
         }
